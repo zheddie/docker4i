@@ -27,5 +27,4 @@ pip3 install jupyter==1.0.0              #Required six>=1.11.0
 pip3 install jupyterlab==3.2.9
 pip3 install cython==0.29.28
 pip3 install matplotlib==3.3.4
-# pip3 install pandas==1.1.5
-# pip3 install seaborn==0.11.2
+

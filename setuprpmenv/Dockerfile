@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
-RUN apt-get update && apt-get install -y openssh-client curl
+FROM alpine:3.15.4
+RUN apk add --no-cache openssh-client bash curl
 RUN mkdir -p /root/.ssh
 RUN chown -R root:root /root/.ssh
-RUN echo "Host *\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
+RUN echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config
 RUN mkdir /opt/ibmi
 COPY setuprpmenv.sh /opt/ibmi/
 COPY start.sh /opt/ibmi/
