@@ -1,5 +1,5 @@
 # docker4i
-docker images for i open source manangement.
+Docker images for i open source manangement.
 
 Currently, we have following three dockers 
 * setuprpmenv 

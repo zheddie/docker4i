@@ -2,7 +2,7 @@
 export PATH=/QOpenSys/pkgs/bin/:$PATH
 yum update -y
 yum install -y python3 python3-devel python3-pip
-pip3 install --upgrade pip
+python3 -m pip install --upgrade pip
 yum install -y gcc gcc-cplusplus gcc-aix gcc-cpp-aix gcc-cplusplus-aix libstdcplusplus-devel 
 
 release=`uname -vr`
