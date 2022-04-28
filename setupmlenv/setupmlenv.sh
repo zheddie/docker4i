@@ -28,4 +28,4 @@ python3 -m pip install jupyterlab==3.2.9
 python3 -m pip install cython==0.29.28
 python3 -m pip install matplotlib==3.3.4
 python3 -m pip install pandas==1.1.5
-python3 -m pip install seaborn=0.11.2
+python3 -m pip install seaborn==0.11.2
