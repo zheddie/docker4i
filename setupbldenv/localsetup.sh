@@ -12,3 +12,4 @@ fi
 yum install -y vim git wget curl gzip
 yum install -y patch-gnu m4-gnu grep-gnu sed-gnu tar-gnu
 yum install -y make-gnu cmake  automake autoconfig
+yum install -y maven

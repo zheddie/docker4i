@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "scp /opt/ibmi/setupmlenv.sh ${ICONNECT}:/tmp/"
-scp /opt/ibmi/setupmlenv.sh ${ICONNECT}:/tmp/
-echo "ssh ${ICONNECT} /tmp/setupmlenv.sh"
-ssh ${ICONNECT} "/tmp/setupmlenv.sh"
+echo "scp /opt/ibmi/localsetup.sh ${ICONNECT}:/tmp/"
+scp /opt/ibmi/localsetup.sh ${ICONNECT}:/tmp/
+echo "ssh ${ICONNECT} /tmp/localsetup.sh"
+ssh ${ICONNECT} "/tmp/localsetup.sh"
