@@ -19,7 +19,7 @@ yum install -y freetype-devel libfreetype6
 yum install -y libpng-devel libpng16
 yum install -y libzmq5 libzmq-devel zlib-devel 
 yum install -y python39-dateutil python39-pytz   #required by pandas. Prefer to isntall here.
-yum install -y python39-psutil
+yum install -y python39-psutil python39-pandas
 yum install -y libffi-devel       #Required by jupyter.
 yum install -y libjpeg-turbo-devel #Required by Pillow
 python3.9 -m pip install --upgrade six==1.16.0
