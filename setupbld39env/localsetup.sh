@@ -7,8 +7,10 @@ yum install -y gcc10 gcc10-cplusplus gcc10-cpp gcc10-cplusplus gcc10-gfortran li
 release=`uname -vr`
 if [ "*$release*" == "*5 7*" ]; then
 	echo "Fixing for gcc10"
-	#for gcc10, we may not needed it anymore.
-	#mv  /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/6.3.0/include-fixed-7.1/sys/types.h  /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/6.3.0/include-fixed-7.1/sys/types.h.nouse
+	#for gcc10, we still need it.
+	if [ -f "/QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h" ]; then
+		mv  /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h.nouse
+	fi
 fi
 yum install -y vim git wget curl gzip
 yum install -y patch-gnu m4-gnu grep-gnu sed-gnu tar-gnu
