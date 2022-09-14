@@ -12,6 +12,7 @@ if [ "*$release*" == "*5 7*" ]; then
 		mv  /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h.nouse
 	fi
 fi
+yum install -y pkg-config     #Used for python package install/build
 yum install -y vim git wget curl gzip
 yum install -y patch-gnu m4-gnu grep-gnu sed-gnu tar-gnu
 yum install -y make-gnu cmake  automake autoconfig
