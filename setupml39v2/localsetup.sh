@@ -32,18 +32,19 @@ yum install -y pkg-config openblas-devel libzmq5
 
 yum install -y freetype-devel libjpeg-turbo-devel zlib-devel #for pillow
 yum install -y python39-psutil libxml2-devel libxslt-devel libffi-devel #for Jupyter
+yum install -y qhull-devel #for matplotlib
 #Prepare
 python3.9 -m pip install pybind11 cython
 python3.9 -m pip install --upgrade six
 #numpy
 python3.9 -m pip install numpy   #could installed, but need the PR to make the distutils works for scipy.
 #scipy
-python3.9 -m pip install ply gast beniget pythran
+# python3.9 -m pip install ply gast beniget pythran
 # python3.9 -m pip install ninja #This is required by pip3:ninja
 # yum install ninja-build  #This is required by pip3:ninja, while pip3:ninja would change the bin/ninja to python scirpt.
 
 # #
-# python3.9 -m pip install scipy #It would also trying to install ninja as pip package. Also need a PR to make "func_data" changed.
+python3.9 -m pip install scipy #It would also trying to install ninja as pip package. Also need a PR to make "func_data" changed.
 # #scikit-learn
 # #python3.9 -m pip install threadpoolctl joblib
 # python3.9 -m pip install scikit-learn  #Currently, need 
