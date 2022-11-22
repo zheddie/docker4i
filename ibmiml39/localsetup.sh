@@ -11,58 +11,79 @@ mkdir -p ~/gcc10bin
 if [ -e ~/gcc10bin/gcc ]; then
 	rm ~/gcc10bin/gcc
 fi
+ln -s /QOpenSys/pkgs/bin/gcc-10 ~/gcc10bin/gcc
 if [ -e ~/gcc10bin/g++ ]; then
 	rm ~/gcc10bin/g++
 fi
-ln -s /QOpenSys/pkgs/bin/gcc-10 ~/gcc10bin/gcc
-ln -s /QOpenSys/pkgs/bin/gcc-10 ~/gcc10bin/cc
 ln -s /QOpenSys/pkgs/bin/g++-10 ~/gcc10bin/g++
+if [ -e ~/gcc10bin/cc ]; then
+	rm ~/gcc10bin/cc
+fi
+ln -s /QOpenSys/pkgs/bin/gcc-10 ~/gcc10bin/cc
+if [ -e ~/gcc10bin/c++ ]; then
+	rm ~/gcc10bin/c++
+fi
 ln -s /QOpenSys/pkgs/bin/g++-10 ~/gcc10bin/c++
+if [ -e ~/gcc10bin/gfortran ]; then
+	rm ~/gcc10bin/gfortran
+fi
 ln -s /QOpenSys/pkgs/bin/gfortran-10 ~/gcc10bin/gfortran
-release=`uname -vr`
-if [ "*$release*" == "*5 7*" ]; then
+R=`uname -r`
+V=`uname -v`
+if [[ "$V$R" > "74" ]]; then
 	#for gcc10, we may not need it.
 	if [ -f "/QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h" ]; then
 		mv  /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h.nouse
 	fi
 fi
-# yum install -y cmake #for scipy, ninja
+
 yum install -y pkg-config openblas-devel 
 yum install -y libzmq5 libzmq-devel #for pyzmq
-
 yum install -y freetype-devel libjpeg-turbo-devel zlib-devel #for pillow
 yum install -y python39-psutil libxml2-devel libxslt-devel libffi-devel #for Jupyter
+yum install -y qhull-devel #for matplotlib
 
 #Prepare
 python3.9 -m pip install pybind11 cython
 python3.9 -m pip install --upgrade six
+python3.9 -m pip install threadpoolctl joblib
+python3.9 -m pip install pyzmq
+
+echo "***NOTE:Following packages would take long time."
+echo "***NOTE:If failed or too long time without any reponse.Don't worry. Trying following commands directly on i"
+echo "python3.9 -m pip install numpy"
+echo "python3.9 -m pip install scipy"
+echo "python3.9 -m pip install scikit-learn"
+echo "python3.9 -m pip install Pillow"
+echo "python3.9 -m pip install jupyter jupyterlab"
+echo "python3.9 -m pip install matplotlib"
+echo "python3.9 -m pip install seaborn"
+echo "Starting them one by one ... ..."
 #numpy
+echo "python3.9 -m pip install numpy"
 python3.9 -m pip install numpy   #could installed, but need the PR to make the distutils works for scipy.
 
 #scipy
-# python3.9 -m pip install ply gast beniget pythran
-# python3.9 -m pip install ninja #This is required by pip3:ninja
-# yum install ninja-build  #This is required by pip3:ninja, while pip3:ninja would change the bin/ninja to python scirpt.
+echo "python3.9 -m pip install scipy"
 python3.9 -m pip install scipy #It would also trying to install ninja as pip package. Also need a PR to make "func_data" changed.
 
 # #scikit-learn
-python3.9 -m pip install threadpoolctl joblib
-# waiting for the oldest_support_numpy project update.
-# python3.9 -m pip install scikit-learn  #Currently, need 
+echo "python3.9 -m pip install scikit-learn"
+python3.9 -m pip install scikit-learn  #Currently, need 
 
 # #Pillow
+echo "python3.9 -m pip install Pillow"
 python3.9 -m pip install Pillow
 
 # #Jupyter
-python3.9 -m pip install pyzmq
+echo "python3.9 -m pip install jupyter jupyterlab"
 python3.9 -m pip install jupyter jupyterlab
 
 #Matplotlib
-yum install -y qhull-devel #for matplotlib
-# # python3.9 -m pip install cppy kiwisolver  contourpy   #Required by matplotlib 
+echo "python3.9 -m pip install matplotlib"
 python3.9 -m pip install matplotlib
-#This will auto install pandas very quickly. 
-python3.9 -m pip install seaborn
 
-#NO USE as for now.
-#yum install -y libpng-devel libpng16
+# This will auto install pandas ,which require a long time to build. 
+# In case you need pandas, try to install it by yourself.
+echo "python3.9 -m pip install seaborn"
+python3.9 -m pip install seaborn

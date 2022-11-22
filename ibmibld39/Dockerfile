@@ -1,4 +1,4 @@
-FROM alpine:3.15.4
+FROM alpine:latest
 RUN apk add --no-cache openssh-client bash
 RUN mkdir -p /root/.ssh
 RUN chown -R root:root /root/.ssh

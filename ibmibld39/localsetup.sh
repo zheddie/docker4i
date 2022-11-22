@@ -4,8 +4,9 @@ yum update -y
 yum install -y python39 python39-devel python39-pip
 python3.9 -m pip install --upgrade pip
 yum install -y gcc10 gcc10-cplusplus gcc10-cpp gcc10-cplusplus gcc10-gfortran libstdcplusplus6-10-devel 
-release=`uname -vr`
-if [ "*$release*" == "*5 7*" ]; then
+R=`uname -r`
+V=`uname -v`
+if [[ "$V$R" > "74" ]]; then
 	echo "Fixing for gcc10"
 	#for gcc10, we still need it.
 	if [ -f "/QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h" ]; then
