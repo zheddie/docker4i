@@ -1,0 +1,12 @@
+
+FROM alpine:latest
+RUN apk add --no-cache openssh-client bash
+RUN mkdir -p /root/.ssh
+RUN chown -R root:root /root/.ssh
+RUN echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config 
+RUN mkdir /opt/ibmi
+COPY localsetup.sh /opt/ibmi/
+COPY start.sh /opt/ibmi/
+COPY bind /opt/ibmi/
+COPY python39-grpcio-compileroptions.patch /opt/ibmi
+CMD ["sh", "/opt/ibmi/start.sh"]

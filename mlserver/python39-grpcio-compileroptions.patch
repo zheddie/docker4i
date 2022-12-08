@@ -1,0 +1,32 @@
+diff --git a/setup.py b/setup.py
+index ec27fe478f..c6286fd10e 100644
+--- a/setup.py
++++ b/setup.py
+@@ -255,6 +255,9 @@ if EXTRA_ENV_COMPILE_ARGS is None:
+         EXTRA_ENV_COMPILE_ARGS += ' -fvisibility=hidden -fno-wrapv -fno-exceptions'
+     elif "darwin" in sys.platform:
+         EXTRA_ENV_COMPILE_ARGS += ' -stdlib=libc++ -fvisibility=hidden -fno-wrapv -fno-exceptions -DHAVE_UNISTD_H'
++    elif sys.platform.startswith('os400'):
++        # This change is for OS400 platform.
++        EXTRA_ENV_COMPILE_ARGS += ' -D_LINUX_SOURCE_COMPAT -fno-extern-tls-init -fno-wrapv -fno-exceptions'
+ 
+ if EXTRA_ENV_LINK_ARGS is None:
+     EXTRA_ENV_LINK_ARGS = ''
+@@ -291,6 +294,8 @@ if BUILD_WITH_SYSTEM_OPENSSL:
+                           CORE_C_FILES)
+     CORE_C_FILES = filter(lambda x: 'src/boringssl' not in x, CORE_C_FILES)
+     SSL_INCLUDE = (os.path.join('/usr', 'include', 'openssl'),)
++    if sys.platform.startswith('os400'):
++        SSL_INCLUDE = (os.path.join('/QOpenSys/pkgs', 'include', 'openssl'),)
+ 
+ if BUILD_WITH_SYSTEM_ZLIB:
+     CORE_C_FILES = filter(lambda x: 'third_party/zlib' not in x, CORE_C_FILES)
+@@ -299,6 +304,8 @@ if BUILD_WITH_SYSTEM_ZLIB:
+ if BUILD_WITH_SYSTEM_CARES:
+     CORE_C_FILES = filter(lambda x: 'third_party/cares' not in x, CORE_C_FILES)
+     CARES_INCLUDE = (os.path.join('/usr', 'include'),)
++    if sys.platform.startswith('os400'):
++        CARES_INCLUDE = (os.path.join('/QOpenSys/pkgs', 'include'),)
+ 
+ if BUILD_WITH_SYSTEM_RE2:
+     CORE_C_FILES = filter(lambda x: 'third_party/re2' not in x, CORE_C_FILES)

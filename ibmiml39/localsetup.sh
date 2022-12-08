@@ -36,6 +36,18 @@ if [[ "$V$R" > "74" ]]; then
 		mv  /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h /QOpenSys/pkgs/lib/gcc/powerpc-ibm-aix6.1.0.0/10/include-fixed/sys/types.h.nouse
 	fi
 fi
+echo "*******************************************************************************"
+if [[ "$V$R" == "73" ]]; then
+	echo "***NOTE:PTF SI80883 for 5770SS1 is required on IBM i7.3 to avoid some build failures for some project ***"
+fi
+if [[ "$V$R" == "74" ]]; then
+	echo "***NOTE:PTF SI80885 for 5770SS1 is required on IBM i7.4 to avoid some build failures for some project ***"
+fi
+if [[ "$V$R" == "75" ]]; then
+	echo "***NOTE:PTF SI80884 for 5770SS1 is required on IBM i7.5 to avoid some build failures for some project ***"
+fi
+echo "*******************************************************************************"
+
 
 yum install -y pkg-config openblas-devel 
 yum install -y libzmq5 libzmq-devel #for pyzmq
@@ -48,24 +60,28 @@ python3.9 -m pip install pybind11 cython
 python3.9 -m pip install --upgrade six
 python3.9 -m pip install threadpoolctl joblib
 python3.9 -m pip install pyzmq
+python3.9 -m pip install ninja #Separate install it , as it's required by lots of projects.
 
-echo "***NOTE:Following packages would take long time."
-echo "***NOTE:If failed or too long time without any reponse.Don't worry. Trying following commands directly on i"
-echo "python3.9 -m pip install numpy"
-echo "python3.9 -m pip install scipy"
-echo "python3.9 -m pip install scikit-learn"
-echo "python3.9 -m pip install Pillow"
-echo "python3.9 -m pip install jupyter jupyterlab"
-echo "python3.9 -m pip install matplotlib"
-echo "python3.9 -m pip install seaborn"
-echo "Starting them one by one ... ..."
+echo "*******************************************************************************"
+echo "***NOTE:Following packages would take long time.                              *"
+echo "***NOTE:If failed or too long time without any reponse.Don't worry.           *"
+echo "*        Trying following commands directly on i                              *"
+echo "*python3.9 -m pip install numpy                                               *"
+echo "*python3.9 -m pip install scipy                                               *"
+echo "*python3.9 -m pip install scikit-learn                                        *"
+echo "*python3.9 -m pip install Pillow                                              *"
+echo "*python3.9 -m pip install jupyter jupyterlab                                  *"
+echo "*python3.9 -m pip install matplotlib                                          *"
+echo "*python3.9 -m pip install seaborn                                             *"
+echo "*Starting them one by one ... ...                                             *"
+echo "*******************************************************************************"
 #numpy
 echo "python3.9 -m pip install numpy"
 python3.9 -m pip install numpy   #could installed, but need the PR to make the distutils works for scipy.
 
 #scipy
 echo "python3.9 -m pip install scipy"
-python3.9 -m pip install scipy #It would also trying to install ninja as pip package. Also need a PR to make "func_data" changed.
+python3.9 -m pip install scipy
 
 # #scikit-learn
 echo "python3.9 -m pip install scikit-learn"
