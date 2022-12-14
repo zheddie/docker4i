@@ -6,21 +6,10 @@ Currently, we have following 4 dockers in this repo.
 	* This docker could help you to setup RPM env on target IBM i system.
 * ibmibld39
 	* This docker help you to setup build essential packages, especially for python 3.9 on target IBM i system.
-	* Following RPM packages would be automatically installed:
-		+ python39 python39-devel python39-pip
-		+ gcc10 gcc10-cplusplus gcc10-cpp gcc10-cplusplus gcc10-gfortran libstdcplusplus6-10-devel
-		+ pkg-config patch-gnu m4-gnu grep-gnu sed-gnu tar-gnu
-		+ vim git wget curl gzip make-gnu cmake  automake autoconfig
-		+ maven c-ares-devel openssl-devel
 
 * ibmiml39 
-	* This docker help you to setup Machine Learning frameworks(based on python3.9) on target IBM i system.
-	* Following RPM packages would be automatically installed:
-		+ python39-ibm_db libzmq5 libzmq-devel qhull-devel
-		+ freetype-devel libjpeg-turbo-devel zlib-devel
-		+ python39-psutil libxml2-devel libxslt-devel libffi-devel
-	* Following PIP3 packages would be automatically installed:
-		+ pybind11 cython six threadpoolctl joblib pyzmq ninja  seaborn
+	* This docker helps you to setup following Machine Learning frameworks(based on python3.9) on target IBM i system.
+		+ pybind11 cython six threadpoolctl joblib pyzmq ninja seaborn
 		+ Pillow
 		+ numpy
 		+ scipy

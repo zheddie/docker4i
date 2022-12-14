@@ -63,17 +63,8 @@ python3.9 -m pip install pyzmq
 python3.9 -m pip install ninja #Separate install it , as it's required by lots of projects.
 
 echo "*******************************************************************************"
-echo "***NOTE:Following packages would take long time.                              *"
-echo "***NOTE:If failed or too long time without any reponse.Don't worry.           *"
-echo "*        Trying following commands directly on i                              *"
-echo "*python3.9 -m pip install numpy                                               *"
-echo "*python3.9 -m pip install scipy                                               *"
-echo "*python3.9 -m pip install scikit-learn                                        *"
-echo "*python3.9 -m pip install Pillow                                              *"
-echo "*python3.9 -m pip install jupyter jupyterlab                                  *"
-echo "*python3.9 -m pip install matplotlib                                          *"
-echo "*python3.9 -m pip install seaborn                                             *"
-echo "*Starting them one by one ... ...                                             *"
+echo "***NOTE:Following packages could take long time.                              *"
+echo "***NOTE:If failed , just try to re-run this docker until success.             *"
 echo "*******************************************************************************"
 #numpy
 echo "python3.9 -m pip install numpy"
