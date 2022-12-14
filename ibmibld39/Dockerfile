@@ -2,7 +2,7 @@ FROM alpine:latest
 RUN apk add --no-cache openssh-client bash
 RUN mkdir -p /root/.ssh
 RUN chown -R root:root /root/.ssh
-RUN echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /root/.ssh/config 
+RUN echo -e "Host *\n\tStrictHostKeyChecking no\n\tServerAliveInterval 300\n\tServerAliveCountMax 2\n" >> /root/.ssh/config
 RUN mkdir /opt/ibmi
 COPY localsetup.sh /opt/ibmi/
 COPY start.sh /opt/ibmi/

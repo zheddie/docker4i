@@ -85,7 +85,7 @@ python3.9 -m pip install scipy
 
 # #scikit-learn
 echo "python3.9 -m pip install scikit-learn"
-python3.9 -m pip install scikit-learn  #Currently, need 
+python3.9 -m pip install scikit-learn==1.1.0  #Currently, need 
 
 # #Pillow
 echo "python3.9 -m pip install Pillow"
